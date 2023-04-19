@@ -24,13 +24,13 @@ Module-sandbox-hk-pc DEFINITIONS AUTOMATIC TAGS ::= BEGIN
 
   IMPORTS Ccsds-primary-header, Secondary-header FROM Module-tmtc-header;
 
-  Uint64-t ::= INTEGER(0..18446744073709551615) -- 64 bit
+  Uint64-t ::= INTEGER(0..18446744073709551615)
 
-  Percent ::= REAL(0.00 .. 100.00) -- [%] 0.00% to 100.00%
-  Load ::= REAL(0.00 .. 30.00) -- TODO: check range not to big
+  Percent ::= REAL(0.00 .. 100.00)
+  Load ::= REAL(0.00 .. 30.00)
 
   Sandbox-hk-pc-t ::= SEQUENCE {
-    primary-header Ccsds-primary-header -- 0x0899
+    primary-header Ccsds-primary-header
       (WITH COMPONENTS {
         packet-version-number (0),
         packet-identification (WITH COMPONENTS {
@@ -48,42 +48,42 @@ Module-sandbox-hk-pc DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     load1 Load,
     load5 Load,
     load15 Load,
-    total-ram Uint64-t, -- [byte]
-    free-ram Uint64-t, -- [byte]
-    free-swap Uint64-t -- [byte]
+    total-ram Uint64-t,
+    free-ram Uint64-t,
+    free-swap Uint64-t
   }
 
 END
 """.lstrip(),
         """
-Module-tmtc-header DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- CCSDS TM/TC header
+Module-tmtc-header DEFINITIONS AUTOMATIC TAGS ::= BEGIN
 
-  Uint16-t ::= INTEGER(0..65535) -- 16 bit, 0x0000 to 0xFFFF
-  Uint32-t ::= INTEGER(0..4294967295) -- 32 bit, 0x00000000 to 0xFFFFFFFF
+  Uint16-t ::= INTEGER(0..65535)
+  Uint32-t ::= INTEGER(0..4294967295)
 
-  Ccsds-primary-header ::= SEQUENCE { -- primary header
-    packet-version-number INTEGER(0..7), -- 3bit, 0b000 to 0b111
+  Ccsds-primary-header ::= SEQUENCE {
+    packet-version-number INTEGER(0..7),
     packet-identification Packet-identification,
     packet-sequence-control Packet-sequence-control,
     packet-data-length Uint16-t
   }
 
   Packet-identification ::= SEQUENCE {
-    packet-type-is-cmd BOOLEAN, -- 1: cmd, 0: tlm
-    sec-hdr-flag-is-present BOOLEAN, -- 1: present, 0: absent
-    application-process-identifier INTEGER(0..2047) -- 11 bit, 0b00000000000 to 0b11111111111
+    packet-type-is-cmd BOOLEAN,
+    sec-hdr-flag-is-present BOOLEAN,
+    application-process-identifier INTEGER(0..2047)
   }
 
   Packet-sequence-control ::= SEQUENCE {
     sequence-flags Sequence-flag,
-    packet-sequence-count INTEGER(0..16383) -- 14 bit, 0b00000000000000 to 0b11111111111111
+    packet-sequence-count INTEGER(0..16383)
   }
 
-  Sequence-flag ::= ENUMERATED { -- 2 bit, 0b00 to 0b11
+  Sequence-flag ::= ENUMERATED {
     continuation-packet-in-sequence (0),
     first-packet-in-sequence (1),
     last-packet-in-sequence (2),
-    complete-packet(3)
+    complete-packet (3)
   }
 
   Secondary-header ::= SEQUENCE {

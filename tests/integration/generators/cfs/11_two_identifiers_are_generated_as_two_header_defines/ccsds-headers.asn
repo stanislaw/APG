@@ -1,15 +1,20 @@
-Module-ccsds-headers DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- CCSDS TM/TC headers
+-- CCSDS TM/TC headers --
+Module-ccsds-headers DEFINITIONS AUTOMATIC TAGS ::= BEGIN
 
   IMPORTS Uint3, Uint11, Uint14, Uint16-t, Uint32-t FROM Module-simple-types;
 
-  Ccsds-primary-header ::= SEQUENCE { -- primary header
+  -- Primary header --
+  Ccsds-primary-header ::= SEQUENCE {
     packet-identification Packet-identification,
     packet-sequence-control Packet-sequence-control,
-    packet-data-length Uint16-t -- length of the packet
+
+    -- Length of the packet --
+    packet-data-length Uint16-t
   }
 
   Packet-identification ::= SEQUENCE {
-    packet-version-number Uint3, -- moved from Ccsds-primary-header to here to avoid C compiler padding issues
+    -- Moved from Ccsds-primary-header to here to avoid C compiler padding issues. --
+    packet-version-number Uint3,
     packet-type-is-cmd BOOLEAN,
     sec-hdr-flag-is-present BOOLEAN,
     application-process-identifier Uint11
@@ -24,7 +29,7 @@ Module-ccsds-headers DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- CCSDS TM/TC headers
     continuation-packet-in-sequence (0),
     first-packet-in-sequence (1),
     last-packet-in-sequence (2),
-    complete-packet(3)
+    complete-packet (3)
   }
 
   Ccsds-extended-header ::= SEQUENCE {

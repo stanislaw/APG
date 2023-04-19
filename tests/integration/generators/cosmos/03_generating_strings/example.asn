@@ -4,10 +4,14 @@ Module-example DEFINITIONS AUTOMATIC TAGS ::= BEGIN
 
   Simple-choice ::= SEQUENCE {
     sleep Sleep-time,
-    eat SEQUENCE (SIZE (2)) OF Food, -- select two food
+
+    -- select two food --
+    eat SEQUENCE (SIZE (2)) OF Food,
     visible-string IA5String (SIZE (128)),
     numeric-string NumericString (SIZE (129)),
-    zip-code SEQUENCE (SIZE (5)) OF Digits -- your 5 digit zip code
+
+    -- your 5 digit zip code --
+    zip-code SEQUENCE (SIZE (5)) OF Digits
   }
 
   Food ::= ENUMERATED {
@@ -22,8 +26,10 @@ Module-example DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   }
 
   Time ::= SEQUENCE {
-    hour INTEGER(0..23),     -- [h]
-    minute INTEGER(0..59)     -- [min]
+    -- [h] --
+    hour INTEGER(0..23),
+    -- [min] --
+    minute INTEGER(0..59)
   }
 
 END

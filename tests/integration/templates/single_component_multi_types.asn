@@ -3,7 +3,8 @@ Module-single-component-multi-types-test DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   Sandbox-ping ::= SEQUENCE {
     primary-header Ccsds-primary-header
       (WITH COMPONENTS {
-        packet-version-number (0),     -- the version of CCSDS which is used
+        -- The version of CCSDS which is used --
+        packet-version-number (0),
         packet-identification (TRUE),
         packet-sequence-control (1.23)
       }),
@@ -11,7 +12,8 @@ Module-single-component-multi-types-test DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   }
 
   Ccsds-primary-header ::= SEQUENCE {
-    packet-version-number INTEGER(0..7),     -- 3bit, 0b000 to 0b111
+    -- 3bit, 0b000 to 0b111 --
+    packet-version-number INTEGER(0..7),
     packet-identification BOOLEAN,
     packet-sequence-control REAL(0.1 .. 3.1415),
     packet-data-length INTEGER(3..4)

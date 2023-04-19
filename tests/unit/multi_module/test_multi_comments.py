@@ -21,7 +21,8 @@ from asn1_parser.asn1.parser import Asn1Parser
 def test_module_begin_comment():
     input_asn = [
         """
-Module-test-module-begin-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- test comment
+-- test comment --
+Module-test-module-begin-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
         apple
@@ -29,7 +30,8 @@ Module-test-module-begin-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- test 
 END
 """.lstrip(),  # noqa: E501
         """
-Module-test-module-begin-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- test comment
+-- test comment --
+Module-test-module-begin-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
         apple
@@ -56,7 +58,8 @@ END
 def test_module_begin_comment_unit_only():
     input_asn = [
         """
-Module-test-module-begin-comment-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- [min]
+-- [min] --
+Module-test-module-begin-comment-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
         apple
@@ -64,7 +67,8 @@ Module-test-module-begin-comment-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGI
 END
 """.lstrip(),  # noqa: E501
         """
-Module-test-module-begin-comment-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- [min]
+-- [min] --
+Module-test-module-begin-comment-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
         apple
@@ -91,7 +95,8 @@ END
 def test_module_begin_comment_and_unit():
     input_asn = [
         """
-Module-test-module-begin-comment-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- [min] test comment
+-- [min] test comment --
+Module-test-module-begin-comment-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
         apple
@@ -99,7 +104,8 @@ Module-test-module-begin-comment-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
 END
 """.lstrip(),  # noqa: E501
         """
-Module-test-module-begin-comment-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN -- [min] test comment
+-- [min] test comment --
+Module-test-module-begin-comment-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
         apple
@@ -132,7 +138,8 @@ def test_enumerated_comment():
     input_asn = [
         """
 Module-test-enumerated-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Enum-t ::= ENUMERATED { -- test comment
+    -- test comment --
+    Enum-t ::= ENUMERATED {
         carrot,
         apple
     }
@@ -140,7 +147,8 @@ END
 """.lstrip(),
         """
 Module-test-enumerated-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Enum-t ::= ENUMERATED { -- test comment
+    -- test comment --
+    Enum-t ::= ENUMERATED {
         carrot,
         apple
     }
@@ -172,7 +180,8 @@ def test_enumerated_item_comment_last_entry():
 Module-test-enumerated-item-comment-last-entry-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
-        apple -- test comment
+        -- test comment --
+        apple
     }
 END
 """.lstrip(),  # noqa: E501
@@ -180,7 +189,8 @@ END
 Module-test-enumerated-item-comment-last-entry-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
-        apple -- test comment
+        -- test comment --
+        apple
     }
 END
 """.lstrip(),  # noqa: E501
@@ -209,7 +219,8 @@ def test_enumerated_item_comment_entry():
         """
 Module-test-enumerated-item-comment-entry-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
-        carrot, -- test comment
+        -- test comment --
+        carrot,
         apple
     }
 END
@@ -217,7 +228,8 @@ END
         """
 Module-test-enumerated-item-comment-entry-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
-        carrot, -- test comment
+        -- test comment --
+        carrot,
         apple
     }
 END
@@ -249,7 +261,8 @@ def test_enumerated_comment_unit_only():
     input_asn = [
         """
 Module-test-enumerated-comment-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Enum-t ::= ENUMERATED { -- [min]
+    -- [min] --
+    Enum-t ::= ENUMERATED {
         carrot,
         apple
     }
@@ -257,7 +270,8 @@ END
 """.lstrip(),
         """
 Module-test-enumerated-comment-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Enum-t ::= ENUMERATED { -- [min]
+    -- [min] --
+    Enum-t ::= ENUMERATED {
         carrot,
         apple
     }
@@ -289,7 +303,8 @@ def test_enumerated_item_comment_last_entry_unit_only():
 Module-test-enumerated-item-comment-last-entry-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
-        apple -- [min]
+        -- [min] --
+        apple
     }
 END
 """.lstrip(),  # noqa: E501
@@ -297,7 +312,8 @@ END
 Module-test-enumerated-item-comment-last-entry-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
-        apple -- [min]
+        -- [min] --
+        apple
     }
 END
 """.lstrip(),  # noqa: E501
@@ -326,7 +342,8 @@ def test_enumerated_item_comment_entry_unit_only():
         """
 Module-test-enumerated-item-comment-entry-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
-        carrot, -- [min]
+        -- [min] --
+        carrot,
         apple
     }
 END
@@ -334,7 +351,8 @@ END
         """
 Module-test-enumerated-item-comment-entry-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
-        carrot, -- [min]
+        -- [min] --
+        carrot,
         apple
     }
 END
@@ -366,7 +384,8 @@ def test_enumerated_comment_and_unit():
     input_asn = [
         """
 Module-test-enumerated-comment-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Enum-t ::= ENUMERATED { -- [min] test comment
+    -- [min] test comment --
+    Enum-t ::= ENUMERATED {
         carrot,
         apple
     }
@@ -374,7 +393,8 @@ END
 """.lstrip(),
         """
 Module-test-enumerated-comment-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Enum-t ::= ENUMERATED { -- [min] test comment
+    -- [min] test comment --
+    Enum-t ::= ENUMERATED {
         carrot,
         apple
     }
@@ -406,7 +426,8 @@ def test_enumerated_item_comment_last_entry_and_unit():
 Module-test-enumerated-item-comment-last-entry-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
-        apple -- [min] test comment
+        -- [min] test comment --
+        apple
     }
 END
 """.lstrip(),  # noqa: E501
@@ -414,7 +435,8 @@ END
 Module-test-enumerated-item-comment-last-entry-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
         carrot,
-        apple -- [min] test comment
+        -- [min] test comment --
+        apple
     }
 END
 """.lstrip(),  # noqa: E501
@@ -443,7 +465,8 @@ def test_enumerated_item_comment_entry_and_unit():
         """
 Module-test-enumerated-item-comment-entry-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
-        carrot, -- [min] test comment
+        -- [min] test comment --
+        carrot,
         apple
     }
 END
@@ -451,7 +474,8 @@ END
         """
 Module-test-enumerated-item-comment-entry-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Enum-t ::= ENUMERATED {
-        carrot, -- [min] test comment
+        -- [min] test comment --
+        carrot,
         apple
     }
 END
@@ -485,7 +509,8 @@ def test_choice_comment():
     input_asn = [
         """
 Module-test-choice-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Choice-t ::= CHOICE { -- test comment
+    -- test comment --
+    Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -493,7 +518,8 @@ END
 """.lstrip(),
         """
 Module-test-choice-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Choice-t ::= CHOICE { -- test comment
+    -- test comment --
+    Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -525,7 +551,8 @@ def test_choice_item_comment_last_entry():
 Module-test-choice-item-comment-last-entry-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- test comment
+        -- test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -533,7 +560,8 @@ END
 Module-test-choice-item-comment-last-entry-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- test comment
+        -- test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -562,7 +590,8 @@ def test_choice_item_comment_entry():
         """
 Module-test-choice-item-comment-entry-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
-        carrot INTEGER(0..255), -- test comment
+        -- test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -570,7 +599,8 @@ END
         """
 Module-test-choice-item-comment-entry-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
-        carrot INTEGER(0..255), -- test comment
+        -- test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -602,7 +632,8 @@ def test_choice_comment_unit_only():
     input_asn = [
         """
 Module-test-choice-comment-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Choice-t ::= CHOICE { -- [min]
+    -- [min] --
+    Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -610,7 +641,8 @@ END
 """.lstrip(),
         """
 Module-test-choice-comment-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Choice-t ::= CHOICE { -- [min]
+    -- [min] --
+    Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -642,7 +674,8 @@ def test_choice_item_comment_last_entry_unit_only():
 Module-test-choice-item-comment-last-entry-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min]
+        -- [min] --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -650,7 +683,8 @@ END
 Module-test-choice-item-comment-last-entry-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min]
+        -- [min] --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -679,7 +713,8 @@ def test_choice_item_comment_entry_unit_only():
         """
 Module-test-choice-item-comment-entry-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
-        carrot INTEGER(0..255), -- [min]
+        -- [min] --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -687,7 +722,8 @@ END
         """
 Module-test-choice-item-comment-entry-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
-        carrot INTEGER(0..255), -- [min]
+        -- [min] --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -719,7 +755,8 @@ def test_choice_comment_and_unit():
     input_asn = [
         """
 Module-test-choice-comment-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Choice-t ::= CHOICE { -- [min] test comment
+    -- [min] test comment --
+    Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -727,7 +764,8 @@ END
 """.lstrip(),
         """
 Module-test-choice-comment-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Choice-t ::= CHOICE { -- [min] test comment
+    -- [min] test comment --
+    Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -759,7 +797,8 @@ def test_choice_item_comment_last_entry_and_unit():
 Module-test-choice-item-comment-last-entry-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min] test comment
+        -- [min] test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -767,7 +806,8 @@ END
 Module-test-choice-item-comment-last-entry-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min] test comment
+        -- [min] test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -796,7 +836,8 @@ def test_choice_item_comment_entry_and_unit():
         """
 Module-test-choice-item-comment-entry-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
-        carrot INTEGER(0..255), -- [min] test comment
+        -- [min] test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -804,7 +845,8 @@ END
         """
 Module-test-choice-item-comment-entry-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Choice-t ::= CHOICE {
-        carrot INTEGER(0..255), -- [min] test comment
+        -- [min] test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -838,7 +880,8 @@ def test_sequence_comment_simple():
     input_asn = [
         """
 Module-test-sequence-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Seq ::= SEQUENCE { -- test comment
+    -- test comment --
+    Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -846,7 +889,8 @@ END
 """.lstrip(),
         """
 Module-test-sequence-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Seq ::= SEQUENCE { -- test comment
+    -- test comment --
+    Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -873,61 +917,48 @@ END
 
 
 def test_sequence_comment_spaces():
-    def _gen_asn_and_basic_asserts(input_asn):
-        asn1_model = Asn1Parser.parse_from_text(input_asn)
-        assert isinstance(asn1_model, Asn1Module)
+    input_asn = """
+Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+    --              seq test comment --
+    Seq ::= SEQUENCE {
+        carrot INTEGER(0..255),
+        apple INTEGER(0..255)
+    }
+END
+""".strip()
 
-        definition: Sequence = asn1_model.get_definitions()[0]
-        assert isinstance(definition, Sequence)
+    asn1_model = Asn1Parser.parse_from_text(input_asn)
+    assert isinstance(asn1_model, Asn1Module)
 
-        return definition
-
-    #
-    # Simple comment with spaces
-    #
-
-    expected_comment, input_asn = (
-        "seq test comment",
-        """
-            Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-                Seq ::= SEQUENCE {            --              seq test comment
-                    carrot INTEGER(0..255),
-                    apple INTEGER(0..255)
-                }
-            END
-        """,
-    )
-
-    definition = _gen_asn_and_basic_asserts(input_asn)
+    definition: Sequence = asn1_model.get_definitions()[0]
     assert isinstance(definition, Sequence)
 
     comment: Asn1Comment = definition.get_comment()
     assert isinstance(comment, Asn1Comment)
-    assert comment.get_comment() == expected_comment
+    assert comment.get_comment() == "seq test comment"
     assert comment.get_unit() == ""
 
-    #
-    # Comment with spaces and unit
-    #
 
-    expected_comment, input_asn = (
-        "seq test comment",
-        """
-            Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-                Seq ::= SEQUENCE {            -- [unit]             seq test comment
-                    carrot INTEGER(0..255),
-                    apple INTEGER(0..255)
-                }
-            END
-        """,  # noqa: E501
-    )
+def test_sequence_comment_spaces_and_unit():
+    input_asn = """
+Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+    -- [unit]             seq test comment --
+    Seq ::= SEQUENCE {
+        carrot INTEGER(0..255),
+        apple INTEGER(0..255)
+    }
+END
+""".strip()
 
-    definition = _gen_asn_and_basic_asserts(input_asn)
+    asn1_model = Asn1Parser.parse_from_text(input_asn)
+    assert isinstance(asn1_model, Asn1Module)
+
+    definition: Sequence = asn1_model.get_definitions()[0]
     assert isinstance(definition, Sequence)
 
     comment: Asn1Comment = definition.get_comment()
     assert isinstance(comment, Asn1Comment)
-    assert comment.get_comment() == expected_comment
+    assert comment.get_comment() == "seq test comment"
     assert comment.get_unit() == "unit"
 
 
@@ -937,7 +968,8 @@ def test_sequence_item_comment_last_entry():
 Module-test-sequence-comment-last-entry-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- test comment
+        -- test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),
@@ -945,7 +977,8 @@ END
 Module-test-sequence-comment-last-entry-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- test comment
+        -- test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),
@@ -974,7 +1007,8 @@ def test_sequence_item_comment_entry():
         """
 Module-test-sequence-comment-entry-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
-        carrot INTEGER(0..255), -- test comment
+        -- test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -982,7 +1016,8 @@ END
         """
 Module-test-sequence-comment-entry-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
-        carrot INTEGER(0..255), -- test comment
+        -- test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -1025,12 +1060,13 @@ def test_sequence_comment_misc_characters():
         "seq test comment with _ and - and ( and !",
         """
             Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-                Seq ::= SEQUENCE { -- seq test comment with _ and - and ( and !
+                -- seq test comment with _ and - and ( and ! --
+                Seq ::= SEQUENCE {
                     carrot INTEGER(0..255),
                     apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1050,11 +1086,12 @@ def test_sequence_comment_misc_characters():
         """
             Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
                 Seq ::= SEQUENCE {
-                    carrot INTEGER(0..255), -- carrot test comment with _ and - and ( and !
+                    -- carrot test comment with _ and - and ( and ! --
+                    carrot INTEGER(0..255),
                     apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1076,10 +1113,11 @@ def test_sequence_comment_misc_characters():
             Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
                 Seq ::= SEQUENCE {
                     carrot INTEGER(0..255),
-                    apple INTEGER(0..255) -- apple test comment with _ and - and ( and !
+                    -- apple test comment with _ and - and ( and ! --
+                    apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1111,11 +1149,12 @@ def test_first_item_comment():
         """
             Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
                 Seq ::= SEQUENCE {
-                    carrot INTEGER(0..255),             --              first item test comment
+                    --              first item test comment --
+                    carrot INTEGER(0..255),
                     apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1136,11 +1175,12 @@ def test_first_item_comment():
         """
             Module-test-sequence DEFINITIONS AUTOMATIC TAGS ::= BEGIN
                 Seq ::= SEQUENCE {
-                    carrot INTEGER(0..255),             -- [unit]             first item test comment
+                    -- [unit]             first item test comment --
+                    carrot INTEGER(0..255),
                     apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1173,10 +1213,11 @@ def test_last_item_comment():
             Module-test-sequence-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
                 Seq ::= SEQUENCE {
                     carrot INTEGER(0..255),
-                    apple INTEGER(0..255)               --              last item test comment
+                    --              last item test comment --
+                    apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1198,10 +1239,11 @@ def test_last_item_comment():
             Module-test-sequence-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
                 Seq ::= SEQUENCE {
                     carrot INTEGER(0..255),
-                    apple INTEGER(0..255)               -- [unit]             last item test comment
+                    -- [unit]             last item test comment --
+                    apple INTEGER(0..255)
                 }
             END
-        """,  # noqa: E501
+        """.lstrip(),  # noqa: E501
     )
 
     definition = _gen_asn_and_basic_asserts(input_asn)
@@ -1221,7 +1263,8 @@ def test_sequence_comment_unit_only():
     input_asn = [
         """
 Module-test-sequence-comment-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Seq ::= SEQUENCE { -- [min]
+    -- [min] --
+    Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -1229,7 +1272,8 @@ END
 """.lstrip(),
         """
 Module-test-sequence-comment-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Seq ::= SEQUENCE { -- [min]
+    -- [min] --
+    Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -1261,7 +1305,8 @@ def test_sequence_item_comment_last_entry_unit_only():
 Module-test-sequence-comment-last-entry-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min]
+        -- [min] --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -1269,7 +1314,8 @@ END
 Module-test-sequence-comment-last-entry-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min]
+        -- [min] --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -1298,7 +1344,8 @@ def test_sequence_item_comment_entry_unit_only():
         """
 Module-test-sequence-comment-entry-unit-only-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
-        carrot INTEGER(0..255), -- [min]
+        -- [min] --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -1306,7 +1353,8 @@ END
         """
 Module-test-sequence-comment-entry-unit-only-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
-        carrot INTEGER(0..255), -- [min]
+        -- [min] --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -1338,7 +1386,8 @@ def test_sequence_comment_and_unit():
     input_asn = [
         """
 Module-test-sequence-comment-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Seq ::= SEQUENCE { -- [min] test comment
+    -- [min] test comment --
+    Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -1346,7 +1395,8 @@ END
 """.lstrip(),
         """
 Module-test-sequence-comment-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Seq ::= SEQUENCE { -- [min] test comment
+    -- [min] test comment --
+    Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
@@ -1378,7 +1428,8 @@ def test_sequence_item_comment_last_entry_and_unit():
 Module-test-sequence-comment-last-entry-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min] test comment
+        -- [min] test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -1386,7 +1437,8 @@ END
 Module-test-sequence-comment-last-entry-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
         carrot INTEGER(0..255),
-        apple INTEGER(0..255) -- [min] test comment
+        -- [min] test comment --
+        apple INTEGER(0..255)
     }
 END
 """.lstrip(),  # noqa: E501
@@ -1415,7 +1467,8 @@ def test_sequence_item_comment_entry_and_unit():
         """
 Module-test-sequence-comment-entry-and-unit-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
-        carrot INTEGER(0..255), -- [min] test comment
+        -- [min] test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -1423,7 +1476,8 @@ END
         """
 Module-test-sequence-comment-entry-and-unit-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq ::= SEQUENCE {
-        carrot INTEGER(0..255), -- [min] test comment
+        -- [min] test comment --
+        carrot INTEGER(0..255),
         apple INTEGER(0..255)
     }
 END
@@ -1463,12 +1517,14 @@ def test_simple_definition_comment():
     input_asn = [
         """
 Module-test-simple-definition-comment-1 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Uint16-t ::= INTEGER(0..65535) -- test comment
+    -- test comment --
+    Uint16-t ::= INTEGER(0..65535)
 END
 """.lstrip(),
         """
 Module-test-simple-definition-comment-2 DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Uint16-t ::= INTEGER(0..65535) -- test comment
+    -- test comment --
+    Uint16-t ::= INTEGER(0..65535)
 END
 """.lstrip(),
     ]
@@ -1498,12 +1554,14 @@ def test_simple_definition_comment_unit_only():
     input_asn = [
         """
 Module-test-simple-definition-comment-unit-only DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Uint16-t ::= INTEGER(0..65535) -- [min]
+     -- [min] --
+    Uint16-t ::= INTEGER(0..65535)
 END
 """.lstrip(),  # noqa: E501
         """
 Module-test-simple-definition-comment-unit-only DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Uint16-t ::= INTEGER(0..65535) -- [min]
+    -- [min] --
+    Uint16-t ::= INTEGER(0..65535)
 END
 """.lstrip(),  # noqa: E501
     ]
@@ -1533,12 +1591,14 @@ def test_simple_definition_comment_and_unit():
     input_asn = [
         """
 Module-test-simple-definition-comment-and-unit DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Uint16-t ::= INTEGER(0..65535) -- [min] test comment
+    -- [min] test comment --
+    Uint16-t ::= INTEGER(0..65535)
 END
 """.lstrip(),  # noqa: E501
         """
 Module-test-simple-definition-comment-and-unit DEFINITIONS AUTOMATIC TAGS ::= BEGIN
-    Uint16-t ::= INTEGER(0..65535) -- [min] test comment
+    -- [min] test comment --
+    Uint16-t ::= INTEGER(0..65535)
 END
 """.lstrip(),  # noqa: E501
     ]
@@ -1559,10 +1619,3 @@ END
         assert unit == "min"
         text: str = comment.get_comment()
         assert text == "test comment"
-
-
-#####
-# different kinds of units
-#####
-
-# TODO

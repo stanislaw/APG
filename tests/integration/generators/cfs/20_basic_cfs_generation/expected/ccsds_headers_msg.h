@@ -12,7 +12,7 @@ CCSDS TM/TC headers
 
 typedef struct
 {
-  // moved from Ccsds-primary-header to here to avoid C compiler padding issues
+  // Moved from Ccsds-primary-header to here to avoid C compiler padding issues.
   uint8_t packet_version_number : 3;
   uint8_t packet_type_is_cmd : 1;
   uint8_t sec_hdr_flag_is_present : 1;
@@ -38,12 +38,12 @@ typedef struct
   uint16_t packet_sequence_count : 14;
 } __attribute__((packed)) Packet_sequence_control;
 
-/* primary header */
+/* Primary header */
 typedef struct
 {
   Packet_identification packet_identification;
   Packet_sequence_control packet_sequence_control;
-  // length of the packet
+  // Length of the packet
   uint16_t packet_data_length;
 } __attribute__((packed)) Ccsds_primary_header;
 

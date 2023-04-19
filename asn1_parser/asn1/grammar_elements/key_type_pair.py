@@ -63,9 +63,9 @@ class KeyTypePair:
         return self._asn_type
 
 
-class KeyTypePairNotLast(KeyTypePair):
+class KeyTypePairFirst(KeyTypePair):
     pass
 
 
-class KeyTypePairLast(KeyTypePair):
+class KeyTypePairXs(KeyTypePair):
     pass

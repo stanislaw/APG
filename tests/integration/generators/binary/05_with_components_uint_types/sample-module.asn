@@ -6,7 +6,7 @@ Module-sample-module DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   Uint64-t ::= INTEGER(0..18446744073709551615)
 
   Sample-packet ::= SEQUENCE {
-    sample-packet-with-component With-component-packet (WITH COMPONENTS { -- <BHIQ
+    sample-packet-with-component With-component-packet (WITH COMPONENTS {
       with-component-packet-number-1 (23),
       with-component-packet-number-2 (300),
       with-component-packet-number-3 (66000),

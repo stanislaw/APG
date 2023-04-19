@@ -5,7 +5,7 @@ class Asn1Comment:
     def __init__(
         self, parent: Any, comment: str, unit: str, is_little_endian: bool
     ) -> None:
-        self._comment = comment
+        self._comment = comment.strip() if comment is not None else ""
         self._unit = unit
         self._is_little_endian = is_little_endian
         self._parent = parent

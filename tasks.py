@@ -149,7 +149,9 @@ def test_integration(context, focus=None, debug=False):
 def lint_black_diff(context):
     command = oneline_command(
         f"""
-        black . --line-length {LINE_LENGTH} --color 2>&1
+        black
+            asn1_parser tests/unit tasks.py
+            --line-length {LINE_LENGTH} --color 2>&1
         """
     )
     result = run_invoke_cmd(context, command)
@@ -180,7 +182,7 @@ def lint_pylint(context):
 def lint_flake8(context):
     command = oneline_command(
         f"""
-        flake8 .
+        flake8 asn1_parser tests/unit tasks.py
             --exclude=.venv,docs
             --statistics
             --max-line-length {LINE_LENGTH}

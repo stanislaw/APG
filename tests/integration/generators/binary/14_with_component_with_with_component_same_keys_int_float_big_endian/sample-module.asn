@@ -1,7 +1,7 @@
 Module-sample-module DEFINITIONS AUTOMATIC TAGS ::= BEGIN
 
   Seq0 ::= SEQUENCE {
-    value Seq1 (WITH COMPONENTS {  -- >Bf
+    value Seq1 (WITH COMPONENTS {
       my-value (3),
       inner-with-component (WITH COMPONENTS {
         my-value (3.14)

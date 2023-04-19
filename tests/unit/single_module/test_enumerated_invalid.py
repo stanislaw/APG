@@ -19,9 +19,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected NameLower at position (4, 5) => ' a-t,     *} END '."
+    assert key_error.value.args[0] == (
+        b"Expected "
+        b"'--' or '[a-z][a-z\\d]*(-[a-z\\d]+)*' "
+        b"at position (4, 5) => ' a-t,     *} END '."
     )
 
 
@@ -38,9 +39,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected NameLower at position (5, 5) => ' b-t,     *} END '."
+    assert key_error.value.args[0] == (
+        b"Expected "
+        b"'--' or '[a-z][a-z\\d]*(-[a-z\\d]+)*' "
+        b"at position (5, 5) => ' b-t,     *} END '."
     )
 
 
@@ -57,9 +59,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected '(' or ',' or '}' at position (4, 9) => 't         *b-t     } '."  # noqa: E501
+    assert key_error.value.args[0] == (
+        b"Expected "
+        b"',' or '}' "
+        b"at position (4, 9) => 't         *b-t     } '."
     )
 
 
@@ -79,7 +82,7 @@ END
 
     assert (
         key_error.value.args[0]
-        == b"Expected '(' or ',' or '}' at position (5, 9) => 't         *c-t     } '."  # noqa: E501
+        == b"Expected ',' or '}' at position (5, 9) => 't         *c-t     } '."  # noqa: E501
     )
 
 

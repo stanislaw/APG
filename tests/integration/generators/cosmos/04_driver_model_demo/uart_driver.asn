@@ -3,9 +3,8 @@ Module-uart-driver DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   IMPORTS Cfe-tlm-header FROM Module-cfe-headers
           Real-range FROM Module-simple-types;
 
-
-
-  Uart-driver-uart0-read-tlm ::= SEQUENCE { -- UART_DRIVER_UART_0_READ_MID uart_driver_ReadTlm_t (0x08D0)
+  -- UART_DRIVER_UART_0_READ_MID uart_driver_ReadTlm_t (0x08D0) --
+  Uart-driver-uart0-read-tlm ::= SEQUENCE {
     header Cfe-tlm-header (WITH COMPONENTS {
       primary (WITH COMPONENTS {
         packet-version-number (0),
@@ -19,7 +18,8 @@ Module-uart-driver DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     payload Payload-uart-driver
   }
 
-  Uart-driver-uart1-read-tlm ::= SEQUENCE { -- UART_DRIVER_UART_1_READ_MID uart_driver_ReadTlm_t (0x08D1)
+  -- UART_DRIVER_UART_1_READ_MID uart_driver_ReadTlm_t (0x08D1) --
+  Uart-driver-uart1-read-tlm ::= SEQUENCE {
     header Cfe-tlm-header (WITH COMPONENTS {
       primary (WITH COMPONENTS {
         packet-version-number (0),
@@ -33,10 +33,9 @@ Module-uart-driver DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     payload Payload-uart-driver
   }
 
-
-
   Payload-uart-driver ::= SEQUENCE {
-    raw Real-range -- [m] TODO String
+    -- [m] TODO String --
+    raw Real-range
   }
 
 END

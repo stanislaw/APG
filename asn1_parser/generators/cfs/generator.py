@@ -66,7 +66,6 @@ class CFSGenerator(Generator):
                 module_cdata.add_include(
                     str(cgen.LineComment(comment.get_comment()))
                 )
-
             simple_definition_list_imported: List[SimpleDefinition] = []
             for imported_module in module.get_imported_modules():
                 simple_definition_list_imported.extend(
