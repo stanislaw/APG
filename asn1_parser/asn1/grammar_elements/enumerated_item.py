@@ -34,9 +34,9 @@ class EnumeratedItem:
         self._pos = outside_pos
 
 
-class EnumeratedItemNotLast(EnumeratedItem):
+class EnumeratedItemFirst(EnumeratedItem):
     pass
 
 
-class EnumeratedItemLast(EnumeratedItem):
+class EnumeratedItemXs(EnumeratedItem):
     pass

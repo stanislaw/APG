@@ -199,14 +199,14 @@ class GenerateCCommandConfig:
 
 
 class GenerateBinaryCommandConfig:
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments
         self,
         project_root_path: str,
         input_paths: List[str],
         asn1_modules: List[str],
         output_dir: str,
         endianness: str,
-    ) -> None:  # pylint: disable=too-many-arguments
+    ) -> None:
         self.project_root_path = project_root_path
         self.input_paths = input_paths
         self.asn1_modules = asn1_modules

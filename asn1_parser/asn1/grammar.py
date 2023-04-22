@@ -1,34 +1,45 @@
 GRAMMAR = """
-Asn1Module:
-  'Module-'module_name=NameLower
-    'DEFINITIONS AUTOMATIC TAGS ::= BEGIN'(comment=Asn1Comment)?
-    ('IMPORTS' import_items+=ImportItem ';' (comment_import=Asn1Comment)?)?
-    definitions+=Definitions
+Asn1Module[noskipws]:
+  (comment=Asn1Comment)?
+  'Module-' module_name=NameLower ' DEFINITIONS AUTOMATIC TAGS ::= BEGIN'
+  /\\s*/-
+  (
+    (comment_import = Asn1Comment)? 'IMPORTS' import_items+=ImportItem ';' '\n'
+  )?
+  (definitions += Definitions)
   'END'
 ;
 
-ImportItem:
-  definitions+=NameCapital[',']
-  'FROM Module-'module_name=NameLower
+ImportItem[noskipws]:
+  /\\s*/-
   (comment=Asn1Comment)?
+  /\\s*/-
+  definitions+=NameCapital[', '] ' FROM Module-' module_name=NameLower
+  /\\s*/-
 ;
 
 Asn1Comment[noskipws]:
-  (' ')*
+  /\\s*/-
   '--'
   (' ')*
   is_little_endian?='ENDIANNESS(LITTLE)'
   (' ')*
   ('[' unit=/[%A-Za-z\\d\\/\\^]+/ ']')?
   (' ')*
-  (comment=/[A-Za-z0-9\\*\\(\\)\\.\\/%:, -_]+$/)?
+  (comment = ASN1CommentString)?
+  '--' '\n'
+  /\\s*/-
 ;
 
-NameLower:
+ASN1CommentString[noskipws]:
+  (!'--' /./)+
+;
+
+NameLower[noskipws]:
   /[a-z][a-z\\d]*(-[a-z\\d]+)*/
 ;
 
-NameCapital:
+NameCapital[noskipws]:
   /[A-Z][a-z\\d]*(-[a-z\\d]+)*/
 ;
 
@@ -36,106 +47,121 @@ Definitions:
   Choice | Enumerated | Sequence | SimpleDefinition
 ;
 
-Enumerated:
-  type_name=NameCapital '::= ENUMERATED {'(comment=Asn1Comment)?
-    (enum=EnumeratedItemNotLast)*
-    enum=EnumeratedItemLast
+Enumerated[noskipws]:
+  /\\s*/-
+  (comment = Asn1Comment)?
+  /\\s*/-
+  type_name=NameCapital ' ::= ENUMERATED {' '\n'
+    (enum = EnumeratedItemFirst)
+    (enum *= EnumeratedItemXs)
   '}'
+  /\\s*/-
 ;
 
-EnumeratedItemNotLast:
-  key=NameLower ('('pos=INT')')? (',') (comment=Asn1Comment)?
+EnumeratedItemFirst[noskipws]:
+  /\\s*/-
+  (comment = Asn1Comment)?
+  /\\s*/-
+  key=NameLower (' ' '('pos=INT')')?
+  /\\s*/-
 ;
 
-EnumeratedItemLast:
-  key=NameLower ('('pos=INT')')? (comment=Asn1Comment)?
+EnumeratedItemXs[noskipws]:
+  ',' EnumeratedItemFirst
 ;
 
 Asn1Type[noskipws]:
-  ' 'type_name='REAL'('('begin=STRICTFLOAT' .. 'end=STRICTFLOAT')')? |
-  ' 'type_name='INTEGER'('('begin=INT'..'end=INT')')? |
-  ' 'type_name='NULL' |
-  ' 'type_name='BOOLEAN' |
-  ' 'type_name=Asn1String |
-  ' 'type_name=Array |
-  ' 'type_name=NameCapital // TODO: correct to match exactly a defined typ
+  type_name='REAL'('('begin=STRICTFLOAT ' .. ' end=STRICTFLOAT')')? |
+  type_name='INTEGER'('('begin=INT'..'end=INT')')? |
+  type_name='NULL' |
+  type_name='BOOLEAN' |
+  type_name=Asn1String |
+  type_name=Array |
+  type_name=NameCapital // TODO: correct to match exactly a defined typ
 ;
 
-KeyTypePairNotLast:
-  (
-    key=NameLower
-    asn_type=Asn1Type
-    ','
-    (comment=Asn1Comment)?
-  ) | (
-    key=NameLower
-    asn_type=Asn1Type
-    (comment=Asn1Comment)?
-    with_components=WithComponents
-    ','
-  )
+KeyTypePairFirst[noskipws]:
+  /\\s*/-
+  (comment=Asn1Comment)?
+  /\\s*/-
+  key=NameLower ' ' asn_type=Asn1Type
+  /\\s*/-
+  (with_components=WithComponents)?
+  /\\s*/-
 ;
 
-KeyTypePairLast:
-  (
-    key=NameLower
-    asn_type=Asn1Type
-    (comment=Asn1Comment)?
-    (with_components=WithComponents)?
-  )
+KeyTypePairXs[noskipws]:
+  ',' KeyTypePairFirst
 ;
 
-WithComponents:
-  '(WITH COMPONENTS {' (comment=Asn1Comment)?
-    (components=ComponentsItemNotLast)*
-    components=ComponentsItemLast
+WithComponents[noskipws]:
+  /\\s*/-
+  (comment=Asn1Comment)?
+  /\\s*/-
+  '(WITH COMPONENTS {' '\n'
+    (components = ComponentsItemFirst)
+    (components *= ComponentsItemXs)
   '})'
+  /\\s*/-
 ;
 
-ComponentsItemNotLast:
-  key=NameLower (
+ComponentsItemFirst[noskipws]:
+  /\\s*/-
+  (comment=Asn1Comment)?
+  /\\s*/-
+  key=NameLower ' ' (
     '(' value=INT ')' |
     '(' value=STRICTFLOAT ')' |
     '(' value='TRUE' ')' |
     '(' value='FALSE' ')' |
     value=WithComponents
-  ) (',') (comment=Asn1Comment)?
+  )
+  /\\s*/-
 ;
 
-ComponentsItemLast:
-  key=NameLower (
-    '(' value=INT ')' |
-    '(' value=STRICTFLOAT ')' |
-    '(' value='TRUE' ')' |
-    '(' value='FALSE' ')' |
-    value=WithComponents
-  ) (comment=Asn1Comment)?
+ComponentsItemXs[noskipws]:
+  ','
+  ComponentsItemFirst
 ;
 
-Choice:
-  type_name=NameCapital '::= CHOICE {'(comment=Asn1Comment)?
-    (choice=KeyTypePairNotLast)*
-    choice=KeyTypePairLast
+Choice[noskipws]:
+  /\\s*/-
+  (comment = Asn1Comment)?
+  /\\s*/-
+
+  (type_name = NameCapital) ' ::= CHOICE {'
+    (choice = KeyTypePairFirst)
+    (choice *= KeyTypePairXs)
   '}'
+  /\\s*/-
 ;
 
-Sequence:
-  type_name=NameCapital '::= SEQUENCE {'(comment=Asn1Comment)?
-    (seq=KeyTypePairNotLast)*
-    seq=KeyTypePairLast
+Sequence[noskipws]:
+  /\\s*/-
+  (comment=Asn1Comment)?
+  /\\s*/-
+  type_name=NameCapital ' ::= SEQUENCE {' '\n'
+    (seq=KeyTypePairFirst)
+    (seq *= KeyTypePairXs)
   '}'
+  /\\s*/-
 ;
 
-SimpleDefinition:
-  type_name=NameCapital '::=' asn_type=Asn1Type (comment=Asn1Comment)?
+SimpleDefinition[noskipws]:
+  /\\s*/-
+  (comment=Asn1Comment)?
+  /\\s*/-
+  type_name=NameCapital ' ::= ' asn_type=Asn1Type
+  /\\s*/-
 ;
 
-Array:
-  'SEQUENCE (SIZE ('length=INT')) OF' asn_type=Asn1Type
+Array[noskipws]:
+  'SEQUENCE (SIZE ('length=INT')) OF ' asn_type=Asn1Type
 ;
+
 // TODO check whether SEQUENCE OF SEQUENCE OF ... is allowed in ASN.1
 
-Asn1String:
+Asn1String[noskipws]:
   (type_name='IA5String' | type_name='NumericString')
   ' (SIZE ('length=INT'))'
 ;

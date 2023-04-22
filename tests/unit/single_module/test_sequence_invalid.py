@@ -25,9 +25,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected NameLower at position (4, 5) => 'LEAN,     *} END '."
+    assert key_error.value.args[0] == (
+        b"Expected "
+        b"'--' or '[a-z][a-z\\d]*(-[a-z\\d]+)*' "
+        b"at position (4, 5) => 'LEAN,     *} END '."
     )
 
 
@@ -44,9 +45,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected NameLower at position (5, 5) => 'LEAN,     *} END '."
+    assert key_error.value.args[0] == (
+        b"Expected "
+        b"'--' or '[a-z][a-z\\d]*(-[a-z\\d]+)*' "
+        b"at position (5, 5) => 'LEAN,     *} END '."
     )
 
 
@@ -63,9 +65,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected ',' or '(WITH COMPONENTS {' or '}' at position (4, 9) => 'N         *b-t BOOLEA'."  # noqa: E501
+    assert key_error.value.args[0] == (
+        b"Expected "
+        b"'--' or '(WITH COMPONENTS {' or ',' or '}' "
+        b"at position (4, 9) => 'N         *b-t BOOLEA'."
     )
 
 
@@ -73,9 +76,9 @@ def test_sequence_missing_comma_three_items():
     input_asn = """
 Module-test DEFINITIONS AUTOMATIC TAGS ::= BEGIN
     Seq-t ::= SEQUENCE {
-        a-t BOOLEAN,
-        b-t BOOLEAN
-        c-t BOOLEAN
+        type-a BOOLEAN,
+        type-b BOOLEAN
+        type-c BOOLEAN
     }
 END
 """.lstrip()
@@ -83,9 +86,10 @@ END
     with pytest.raises(TextXSyntaxError) as key_error:
         Asn1Parser.parse_from_text(input_asn)
 
-    assert (
-        key_error.value.args[0]
-        == b"Expected ',' or '(WITH COMPONENTS {' or '}' at position (5, 9) => 'N         *c-t BOOLEA'."  # noqa: E501
+    assert str(key_error.value) == (
+        "None:5:9: error: Expected "
+        "'--' or '(WITH COMPONENTS {' or ',' or '}' at position (5, 9) => "
+        "'N         *type-c BOO'."
     )
 
 

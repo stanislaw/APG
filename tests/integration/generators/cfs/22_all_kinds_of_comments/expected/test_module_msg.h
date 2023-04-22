@@ -8,7 +8,7 @@ Module test-module comment
 */
 
 #include <stdint.h>
-// import comment used
+// Import comment used.
 #include "test_simple_types1_msg.h"
 #include "test_simple_types2_msg.h"
 

@@ -6,7 +6,8 @@ Module-sandbox-hk-pc DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   Percent-range ::= REAL(0.00 .. 100.00)
   Load-range ::= REAL(0.00 .. 30.00)
 
-  Sandbox-hk-pc ::= SEQUENCE { -- (0x0899) SANDBOX PC housekeeping telemetry
+  -- (0x0899) SANDBOX PC housekeeping telemetry --
+  Sandbox-hk-pc ::= SEQUENCE {
     header Cfe-tlm-header (WITH COMPONENTS {
       primary (WITH COMPONENTS {
         packet-identification (WITH COMPONENTS {
@@ -21,13 +22,20 @@ Module-sandbox-hk-pc DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   }
 
   Payload-sandbox-hk-pc ::= SEQUENCE {
-    cpu Percent-range, -- [%] CPU usage
-    load1 Load-range, -- load from 1 minute average
-    load5 Load-range, -- load from 5 minutes average
-    load15 Load-range, -- load from 15 minutes average
-    total-ram Uint64-t, -- [byte] total RAM
-    free-ram Uint64-t, -- [byte] free RAM
-    free-swap Uint64-t -- [byte] free SWAP
+    -- [%] CPU usage --
+    cpu Percent-range,
+    -- load from 1 minute average --
+    load1 Load-range,
+     -- load from 5 minutes average --
+    load5 Load-range,
+    -- load from 15 minutes average --
+    load15 Load-range,
+    -- [byte] total RAM --
+    total-ram Uint64-t,
+    -- [byte] free RAM --
+    free-ram Uint64-t,
+    -- [byte] free SWAP --
+    free-swap Uint64-t
   }
 
 END

@@ -9,7 +9,8 @@ Module-single-component-test DEFINITIONS AUTOMATIC TAGS ::= BEGIN
   }
 
   Ccsds-primary-header ::= SEQUENCE {
-    packet-version-number INTEGER(0..7),     -- 3bit, 0b000 to 0b111
+    -- 3bit, 0b000 to 0b111 --
+    packet-version-number INTEGER(0..7),
     packet-identification INTEGER(-1..1),
     packet-sequence-control INTEGER(2..3),
     packet-data-length INTEGER(3..4)

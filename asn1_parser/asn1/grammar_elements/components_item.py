@@ -49,9 +49,9 @@ class ComponentsItem:
         self._value = outside_value
 
 
-class ComponentsItemNotLast(ComponentsItem):
+class ComponentsItemFirst(ComponentsItem):
     pass
 
 
-class ComponentsItemLast(ComponentsItem):
+class ComponentsItemXs(ComponentsItem):
     pass
